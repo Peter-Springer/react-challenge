@@ -41879,6 +41879,7 @@
 	    var _this = _possibleConstructorReturn(this, (SignUpPage.__proto__ || Object.getPrototypeOf(SignUpPage)).call(this));
 
 	    _this.state = {
+	      errors: {},
 	      user: {
 	        name: '',
 	        email: '',
@@ -41899,6 +41900,8 @@
 	  _createClass(SignUpPage, [{
 	    key: 'processForm',
 	    value: function processForm(e) {
+	      var _this2 = this;
+
 	      // prevent default action. in this case, action is the form submission event
 	      e.preventDefault();
 
@@ -41916,7 +41919,16 @@
 	      xhr.addEventListener('load', function () {
 	        if (xhr.status === 200) {
 	          // success
-	          console.log({ name: name, email: email, password: password });
+	          console.log('The form is valid');
+	        } else {
+	          // failure
+	          var errors = xhr.response.errors ? xhr.response.errors : {};
+	          errors.summary = xhr.response.message;
+
+	          _this2.setState({
+	            errors: errors
+	          });
+	          console.log(errors.summary);
 	        }
 	      });
 	      xhr.send(formData);
@@ -41938,6 +41950,7 @@
 	      return _react2.default.createElement(_SignUpForm2.default, {
 	        onSubmit: this.processForm,
 	        onChange: this.changeUser,
+	        errors: this.state.errors,
 	        user: this.state.user
 	      });
 	    }
@@ -41979,7 +41992,8 @@
 	var SignUpForm = function SignUpForm(_ref) {
 	  var onSubmit = _ref.onSubmit,
 	      onChange = _ref.onChange,
-	      user = _ref.user;
+	      user = _ref.user,
+	      errors = _ref.errors;
 	  return _react2.default.createElement(
 	    _Card.Card,
 	    { className: 'container' },
@@ -41991,12 +42005,18 @@
 	        { className: 'card-heading' },
 	        'Sign Up'
 	      ),
+	      errors.summary && _react2.default.createElement(
+	        'p',
+	        { className: 'error-message' },
+	        errors.summary
+	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'field-line' },
 	        _react2.default.createElement(_TextField2.default, {
 	          floatingLabelText: 'Name',
 	          name: 'name',
+	          errorText: errors.name,
 	          onChange: onChange,
 	          value: user.name
 	        })
@@ -42007,6 +42027,7 @@
 	        _react2.default.createElement(_TextField2.default, {
 	          floatingLabelText: 'Email',
 	          name: 'email',
+	          errorText: errors.email,
 	          onChange: onChange,
 	          value: user.email
 	        })
@@ -42018,16 +42039,35 @@
 	          floatingLabelText: 'Password',
 	          type: 'password',
 	          name: 'password',
-	          onChange: onChange
+	          onChange: onChange,
+	          errorText: errors.password,
+	          value: user.password
 	        })
 	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'button-line' },
 	        _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Create New Account', primary: true })
+	      ),
+	      _react2.default.createElement(
+	        _Card.CardText,
+	        null,
+	        'Already have an account? ',
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/login' },
+	          'Login'
+	        )
 	      )
 	    )
 	  );
+	};
+
+	SignUpForm.propTypes = {
+	  onSubmit: _react.PropTypes.func.isRequired,
+	  onChange: _react.PropTypes.func.isRequired,
+	  errors: _react.PropTypes.object.isRequired,
+	  user: _react.PropTypes.object.isRequired
 	};
 
 	exports.default = SignUpForm;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import LoginForm from '../components/LoginForm.js';
 
 export default class LoginPage extends Component {

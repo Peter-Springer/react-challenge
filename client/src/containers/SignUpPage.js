@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import SignUpForm from '../components/SignUpForm.js';
 
 export default class SignUpPage extends Component {
@@ -15,7 +15,6 @@ export default class SignUpPage extends Component {
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
   }
-
   /**
    * Process the form.
    *
@@ -45,6 +44,9 @@ export default class SignUpPage extends Component {
         const errors = xhr.response.errors ? xhr.response.errors : {};
         errors.summary = xhr.response.message;
 
+        this.setState({
+          errors
+        });
         console.log(errors.summary);
       }
     });

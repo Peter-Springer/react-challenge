@@ -5,6 +5,7 @@ export default class LoginPage extends Component {
   constructor() {
     super();
     this.state = {
+      errors: {},
       user: {
         email: '',
         password: '',
@@ -36,6 +37,15 @@ export default class LoginPage extends Component {
       if (xhr.status === 200) {
         // success
         console.log({email, password});
+      } else {
+        // failure
+        const errors = xhr.response.errors ? xhr.response.errors : {};
+        errors.summary = xhr.response.message;
+
+        this.setState({
+          errors
+        });
+        console.log(errors.summary);
       }
     });
     xhr.send(formData);
@@ -53,6 +63,7 @@ export default class LoginPage extends Component {
       <LoginForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
+        errors={this.state.errors}
         user={this.state.user}
       />
     );

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports.connect = (uri) => {
+  console.log(uri)
   mongoose.connect(uri);
   // plug in the promise library:
   mongoose.Promise = global.Promise;

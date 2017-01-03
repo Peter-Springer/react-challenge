@@ -4,16 +4,10 @@ import { Card, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-
-const SignUpForm = ({
-  onSubmit,
-  onChange,
-  user,
-}) => (
+const SignUpForm = ({ onSubmit, onChange, user }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign Up</h2>
-
       <div className="field-line">
         <TextField
           floatingLabelText="Name"
@@ -22,7 +16,6 @@ const SignUpForm = ({
           value={user.name}
         />
       </div>
-
       <div className="field-line">
         <TextField
           floatingLabelText="Email"
@@ -31,7 +24,6 @@ const SignUpForm = ({
           value={user.email}
         />
       </div>
-
       <div className="field-line">
         <TextField
           floatingLabelText="Password"
@@ -40,7 +32,6 @@ const SignUpForm = ({
           onChange={onChange}
         />
       </div>
-
       <div className="button-line">
         <RaisedButton type="submit" label="Create New Account" primary />
       </div>

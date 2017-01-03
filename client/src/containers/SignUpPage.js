@@ -1,17 +1,27 @@
-import React, { PropTypes } from 'react';
-import SignUpForm from '../components/SignUpForm.jsx';
+import React, { Component } from 'react';
+import SignUpForm from '../components/SignUpForm.js';
 
-
-class SignUpPage extends React.Component {
-
+export default class SignUpPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {
+        name: '',
+        email: '',
+        password: '',
+      }
+    };
+    this.processForm = this.processForm.bind(this);
+    this.changeUser = this.changeUser.bind(this);
+  }
   /**
    * Process the form.
    *
-   * @param {object} event - the JavaScript event object
+   * @param {object} e - the JavaScript event object
    */
-  processForm(event) {
+  processForm(e) {
     // prevent default action. in this case, action is the form submission event
-    event.preventDefault();
+    e.preventDefault();
 
     // create a string for an HTTP body message
     const name = encodeURIComponent(this.state.user.name);
@@ -28,14 +38,18 @@ class SignUpPage extends React.Component {
       if (xhr.status === 200) {
         // success
         console.log({name, email, password});
-    }
+      }
     });
     xhr.send(formData);
   }
 
-  /**
-   * Render the component.
-   */
+  changeUser(e) {
+    const { name, value } = e.target;
+    const user = Object.assign({}, this.state.user);
+    user[name] = value;
+    this.setState({ user });
+  }
+
   render() {
     return (
       <SignUpForm
@@ -45,7 +59,4 @@ class SignUpPage extends React.Component {
       />
     );
   }
-
 }
-
-export default SignUpPage;

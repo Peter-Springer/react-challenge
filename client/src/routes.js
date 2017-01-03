@@ -1,7 +1,7 @@
-import Base from './components/Base.jsx';
-import HomePage from './components/HomePage.jsx';
-import SignUpPage from './containers/SignUpPage.jsx';
-
+import Base from './components/Base.js';
+import HomePage from './components/HomePage.js';
+import SignUpPage from './containers/SignUpPage.js';
+import LoginPage from './containers/LoginPage.js';
 
 const routes = {
   // base component (wrapper for the whole application).
@@ -16,6 +16,11 @@ const routes = {
     {
       path: '/signup',
       component: SignUpPage
+    },
+
+    {
+      path: '/login',
+      component: LoginPage
     }
 
   ]

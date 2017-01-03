@@ -38,7 +38,7 @@ export default class SignUpPage extends Component {
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
         // success
-        console.log('The form is valid');
+        console.log('Valid sign up form:', {name, email, password});
       } else {
         // failure
         const errors = xhr.response.errors ? xhr.response.errors : {};
@@ -47,7 +47,7 @@ export default class SignUpPage extends Component {
         this.setState({
           errors
         });
-        console.log(errors.summary);
+        console.error('Sign up error:', errors.summary);
       }
     });
     xhr.send(formData);

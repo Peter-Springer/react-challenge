@@ -36,7 +36,7 @@ export default class LoginPage extends Component {
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
         // success
-        console.log({email, password});
+        console.log('Valid login form:', {email, password});
       } else {
         // failure
         const errors = xhr.response.errors ? xhr.response.errors : {};
@@ -45,7 +45,7 @@ export default class LoginPage extends Component {
         this.setState({
           errors
         });
-        console.log(errors.summary);
+        console.error('Login error:', errors.summary);
       }
     });
     xhr.send(formData);

@@ -41919,7 +41919,7 @@
 	      xhr.addEventListener('load', function () {
 	        if (xhr.status === 200) {
 	          // success
-	          console.log('The form is valid');
+	          console.log('Valid sign up form:', { name: name, email: email, password: password });
 	        } else {
 	          // failure
 	          var errors = xhr.response.errors ? xhr.response.errors : {};
@@ -41928,7 +41928,7 @@
 	          _this2.setState({
 	            errors: errors
 	          });
-	          console.log(errors.summary);
+	          console.error('Sign up error:', errors.summary);
 	        }
 	      });
 	      xhr.send(formData);
@@ -44157,7 +44157,7 @@
 	      xhr.addEventListener('load', function () {
 	        if (xhr.status === 200) {
 	          // success
-	          console.log({ email: email, password: password });
+	          console.log('Valid login form:', { email: email, password: password });
 	        } else {
 	          // failure
 	          var errors = xhr.response.errors ? xhr.response.errors : {};
@@ -44166,7 +44166,7 @@
 	          _this2.setState({
 	            errors: errors
 	          });
-	          console.log(errors.summary);
+	          console.error('Login error:', errors.summary);
 	        }
 	      });
 	      xhr.send(formData);

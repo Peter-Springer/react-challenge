@@ -34,12 +34,12 @@ export default class LoginPage extends Component {
     xhr.open('post', '/auth/login');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener('load', (res) => {
       if (xhr.status === 200) {
-        // success
-        Auth.authenticateUser(formData)
+        const token = res.currentTarget.response.token;
+        Auth.authenticateUser(token)
         this.context.router.replace('/dashboard');
-        console.log('Valid login form:', {email, password});
+        console.log('Valid login form:', {email, password, token});
       } else {
         // failure
         const errors = xhr.response.errors ? xhr.response.errors : {};

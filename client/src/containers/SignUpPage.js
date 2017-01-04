@@ -43,6 +43,7 @@ export default class SignUpPage extends Component {
           errors: {}
         });
         // set a message
+        console.log(xhr.response);
         localStorage.setItem('successMessage', xhr.response.message);
         // make a redirect
         this.context.router.replace('/login');

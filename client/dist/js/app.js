@@ -41943,6 +41943,7 @@
 	            errors: {}
 	          });
 	          // set a message
+	          console.log(xhr.response);
 	          localStorage.setItem('successMessage', xhr.response.message);
 	          // make a redirect
 	          _this2.context.router.replace('/login');
@@ -44190,12 +44191,12 @@
 	      xhr.open('post', '/auth/login');
 	      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	      xhr.responseType = 'json';
-	      xhr.addEventListener('load', function () {
+	      xhr.addEventListener('load', function (res) {
 	        if (xhr.status === 200) {
-	          // success
-	          _Auth2.default.authenticateUser(formData);
+	          var token = res.currentTarget.response.token;
+	          _Auth2.default.authenticateUser(token);
 	          _this2.context.router.replace('/dashboard');
-	          console.log('Valid login form:', { email: email, password: password });
+	          console.log('Valid login form:', { email: email, password: password, token: token });
 	        } else {
 	          // failure
 	          var errors = xhr.response.errors ? xhr.response.errors : {};
@@ -44461,11 +44462,11 @@
 	      xhr.responseType = 'json';
 	      xhr.addEventListener('load', function () {
 	        if (xhr.status === 200) {
-	          // set state correctly
+	          debugger;
 	        }
 	        console.log('hello');
 	      });
-	      xhr.send();
+	      xhr.send(_Auth2.default.getToken());
 	    }
 	  }, {
 	    key: 'render',

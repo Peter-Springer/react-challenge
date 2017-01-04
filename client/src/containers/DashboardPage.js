@@ -27,11 +27,11 @@ class DashboardPage extends React.Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
-        // set state correctly
+        debugger
       }
       console.log('hello')
     });
-    xhr.send();
+    xhr.send(Auth.getToken());
   }
 
   render() {

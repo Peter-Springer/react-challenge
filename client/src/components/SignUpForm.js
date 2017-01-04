@@ -16,19 +16,11 @@ const CheckboxStyles = {
   },
 };
 
-
-const SignUpForm = ({
-  onSubmit,
-  onChange,
-  errors,
-  user,
-}) => (
+const SignUpForm = ({ onSubmit, onChange, user, errors, setAdmin }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign Up</h2>
-
       {errors.summary && <p className="error-message">{errors.summary}</p>}
-
       <div className="field-line">
         <TextField
           floatingLabelText="Name"
@@ -38,7 +30,6 @@ const SignUpForm = ({
           value={user.name}
         />
       </div>
-
       <div className="field-line">
         <TextField
           floatingLabelText="Email"
@@ -48,7 +39,6 @@ const SignUpForm = ({
           value={user.email}
         />
       </div>
-
       <div className="field-line">
         <TextField
           floatingLabelText="Password"
@@ -59,7 +49,6 @@ const SignUpForm = ({
           value={user.password}
         />
       </div>
-
       <div className="field-line">
       {errors.admin && <p className="error-message">{errors.admin}</p>}
         <Checkbox
@@ -67,16 +56,15 @@ const SignUpForm = ({
           labelPosition="left"
           style={CheckboxStyles.checkbox}
           name="admin"
-          onChange={onChange}
+          onClick={setAdmin}
           value={user.admin}
         />
       </div>
-
       <div className="button-line">
         <RaisedButton type="submit" label="Create New Account" primary />
       </div>
 
-      <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
+      <CardText>Already have an account? <Link to={'/login'}>Login</Link></CardText>
     </form>
   </Card>
 );
@@ -89,4 +77,3 @@ SignUpForm.propTypes = {
 };
 
 export default SignUpForm;
-

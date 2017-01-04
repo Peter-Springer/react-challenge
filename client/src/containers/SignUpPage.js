@@ -1,38 +1,31 @@
-import React, { PropTypes } from 'react';
-import SignUpForm from '../components/SignUpForm.jsx';
+import React, { Component, PropTypes } from 'react';
+import SignUpForm from '../components/SignUpForm.js';
+import LoginHeader from '../components/LoginHeader.js'
 
-
-class SignUpPage extends React.Component {
-
-  /**
-   * Class constructor.
-   */
+export default class SignUpPage extends Component {
   constructor(props, context) {
     super(props, context);
-
-    // set the initial component state
     this.state = {
       errors: {},
       user: {
-        email: '',
         name: '',
         password: '',
         admin: false
-      }
+      },
+      checked: false,
     };
-
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
+    this.setAdmin = this.setAdmin.bind(this);
   }
-
   /**
    * Process the form.
    *
-   * @param {object} event - the JavaScript event object
+   * @param {object} e - the JavaScript event object
    */
-  processForm(event) {
+  processForm(e) {
     // prevent default action. in this case, action is the form submission event
-    event.preventDefault();
+    e.preventDefault();
 
     // create a string for an HTTP body message
     const name = encodeURIComponent(this.state.user.name);
@@ -46,67 +39,62 @@ class SignUpPage extends React.Component {
     xhr.open('post', '/auth/signup');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener('load', (res) => {
       if (xhr.status === 200) {
-        // success
-
-        // change the component-container state
-        this.setState({
-          errors: {}
-        });
-
+        console.log(res)
         // set a message
         localStorage.setItem('successMessage', xhr.response.message);
-
         // make a redirect
         this.context.router.replace('/login');
+        console.log('Valid sign up form:', {name, email, password, admin});
       } else {
         // failure
-
         const errors = xhr.response.errors ? xhr.response.errors : {};
         errors.summary = xhr.response.message;
 
         this.setState({
           errors
         });
+        console.error('Sign up error:', errors.summary);
       }
     });
     xhr.send(formData);
   }
 
-  /**
-   * Change the user object.
-   *
-   * @param {object} event - the JavaScript event object
-   */
-  changeUser(event) {
-    const field = event.target.name;
-    const user = this.state.user;
-    user[field] = event.target.value;
-
-    this.setState({
-      user
-    });
+  changeUser(e) {
+    const { name, value } = e.target;
+    const user = Object.assign({}, this.state.user);
+    user[name] = value;
+    this.setState({ user });
   }
 
-  /**
-   * Render the component.
-   */
+  setAdmin() {
+    const user = Object.assign({}, this.state.user)
+    if (this.state.checked) {
+      user.admin = false;
+      this.setState({checked: false, user})
+    } else {
+      user.admin = true;
+      this.setState({checked: true, user})
+    }
+  }
+
   render() {
     return (
+      <div>
+      <LoginHeader/>
       <SignUpForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
+        setAdmin={this.setAdmin}
       />
+      </div>
     );
   }
-
 }
 
 SignUpPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
-
-export default SignUpPage;

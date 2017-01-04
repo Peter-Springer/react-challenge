@@ -3,7 +3,6 @@ const User = require('mongoose').model('User');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../../config');
 
-
 /**
  * Return the Passport Local Strategy object.
  */
@@ -49,7 +48,7 @@ module.exports = new PassportLocalStrategy({
       const data = {
         name: user.name
       };
-
+      console.log(token)
       return done(null, token, data);
     });
   });

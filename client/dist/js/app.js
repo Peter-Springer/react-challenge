@@ -34244,6 +34244,10 @@
 
 	var _LoginPage2 = _interopRequireDefault(_LoginPage);
 
+	var _DashboardPage = __webpack_require__(477);
+
+	var _DashboardPage2 = _interopRequireDefault(_DashboardPage);
+
 	var _Auth = __webpack_require__(476);
 
 	var _Auth2 = _interopRequireDefault(_Auth);
@@ -34256,6 +34260,9 @@
 	  childRoutes: [{
 	    path: '/',
 	    component: _HomePage2.default
+	  }, {
+	    path: '/dashboard',
+	    component: _DashboardPage2.default
 	  }, {
 	    path: '/signup',
 	    component: _SignUpPage2.default
@@ -44127,6 +44134,10 @@
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
 
+	var _Auth = __webpack_require__(476);
+
+	var _Auth2 = _interopRequireDefault(_Auth);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44138,10 +44149,10 @@
 	var LoginPage = function (_Component) {
 	  _inherits(LoginPage, _Component);
 
-	  function LoginPage() {
+	  function LoginPage(props, context) {
 	    _classCallCheck(this, LoginPage);
 
-	    var _this = _possibleConstructorReturn(this, (LoginPage.__proto__ || Object.getPrototypeOf(LoginPage)).call(this));
+	    var _this = _possibleConstructorReturn(this, (LoginPage.__proto__ || Object.getPrototypeOf(LoginPage)).call(this, props, context));
 
 	    _this.state = {
 	      errors: {},
@@ -44182,6 +44193,8 @@
 	      xhr.addEventListener('load', function () {
 	        if (xhr.status === 200) {
 	          // success
+	          _Auth2.default.authenticateUser(formData);
+	          _this2.context.router.replace('/dashboard');
 	          console.log('Valid login form:', { email: email, password: password });
 	        } else {
 	          // failure
@@ -44223,6 +44236,11 @@
 	}(_react.Component);
 
 	exports.default = LoginPage;
+
+
+	LoginPage.contextTypes = {
+	  router: _react.PropTypes.object.isRequired
+	};
 
 /***/ },
 /* 475 */
@@ -44377,6 +44395,133 @@
 	}();
 
 	exports.default = Auth;
+
+/***/ },
+/* 477 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Dashboard = __webpack_require__(478);
+
+	var _Dashboard2 = _interopRequireDefault(_Dashboard);
+
+	var _Auth = __webpack_require__(476);
+
+	var _Auth2 = _interopRequireDefault(_Auth);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var DashboardPage = function (_React$Component) {
+	  _inherits(DashboardPage, _React$Component);
+
+	  /**
+	   * Class constructor.
+	   */
+	  function DashboardPage(props) {
+	    _classCallCheck(this, DashboardPage);
+
+	    var _this = _possibleConstructorReturn(this, (DashboardPage.__proto__ || Object.getPrototypeOf(DashboardPage)).call(this, props));
+
+	    _this.state = {
+	      secretData: 'secret'
+	    };
+	    return _this;
+	  }
+
+	  /**
+	   * This method will be executed after initial rendering.
+	   */
+
+
+	  _createClass(DashboardPage, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var xhr = new XMLHttpRequest();
+	      xhr.open('get', '/api/dashboard');
+	      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	      // set the authorization HTTP header
+	      xhr.setRequestHeader('Authorization', 'bearer ' + _Auth2.default.getToken());
+	      xhr.responseType = 'json';
+	      xhr.addEventListener('load', function () {
+	        if (xhr.status === 200) {
+	          // set state correctly
+	        }
+	        console.log('hello');
+	      });
+	      xhr.send();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(_Dashboard2.default, {
+	        secret: this.state.secretData
+	      });
+	    }
+	  }]);
+
+	  return DashboardPage;
+	}(_react2.default.Component);
+
+	exports.default = DashboardPage;
+
+/***/ },
+/* 478 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(333);
+
+	var _Card = __webpack_require__(447);
+
+	var _RaisedButton = __webpack_require__(461);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+	var _TextField = __webpack_require__(463);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Dashboard = function Dashboard(_ref) {
+	  var secret = _ref.secret;
+	  return _react2.default.createElement(
+	    _Card.Card,
+	    { className: 'container' },
+	    _react2.default.createElement(_TextField2.default, {
+	      name: 'secret',
+	      value: secret
+	    })
+	  );
+	};
+
+	exports.default = Dashboard;
 
 /***/ }
 /******/ ]);

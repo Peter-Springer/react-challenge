@@ -2,6 +2,7 @@ import Base from './components/Base.js';
 import HomePage from './components/HomePage.js';
 import SignUpPage from './containers/SignUpPage.js';
 import LoginPage from './containers/LoginPage.js';
+import DashboardPage from './containers/DashboardPage.js';
 import Auth from './modules/Auth';
 
 const routes = {
@@ -12,6 +13,11 @@ const routes = {
     {
       path: '/',
       component: HomePage
+    },
+
+    {
+      path: '/dashboard',
+      component: DashboardPage
     },
 
     {

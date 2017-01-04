@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import LoginForm from '../components/LoginForm.js';
+import Auth from '../modules/Auth';
 
 export default class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       errors: {},
       user: {
@@ -36,6 +37,8 @@ export default class LoginPage extends Component {
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
         // success
+        Auth.authenticateUser(formData)
+        this.context.router.replace('/dashboard');
         console.log('Valid login form:', {email, password});
       } else {
         // failure
@@ -69,3 +72,7 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+LoginPage.contextTypes = {
+  router: PropTypes.object.isRequired
+};

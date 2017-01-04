@@ -1,6 +1,6 @@
 import React from 'react';
+import Dashboard from '../components/Dashboard.js';
 import Auth from '../modules/Auth';
-
 
 class DashboardPage extends React.Component {
 
@@ -10,7 +10,9 @@ class DashboardPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      secretData: 'secret'
+    };
   }
 
   /**
@@ -27,17 +29,18 @@ class DashboardPage extends React.Component {
       if (xhr.status === 200) {
         // set state correctly
       }
+      console.log('hello')
     });
     xhr.send();
   }
 
-  /**
-   * Render the component.
-   */
   render() {
-    return;
+    return (
+      <Dashboard
+        secret={this.state.secretData}
+      />
+    )
   }
-
 }
 
 export default DashboardPage;

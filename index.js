@@ -23,6 +23,7 @@ passport.use('local-login', localLoginStrategy);
 
 // pass the authorization checker middleware
 const authCheckMiddleware = require('./server/middleware/auth-check');
+//can not hit api endpoint until autheticated
 app.use('/api', authCheckMiddleware);
 
 // routes

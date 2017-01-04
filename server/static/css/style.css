@@ -66,3 +66,14 @@ a:hover {
   color: green;
 }
 
+.signout {
+  float: right;
+}
+.user-info-container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.logged-in-header {
+  font-size: 1.5em;
+}

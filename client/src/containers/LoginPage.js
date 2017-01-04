@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import LoginForm from '../components/LoginForm.js';
 import Auth from '../modules/Auth';
+import LoginHeader from '../components/LoginHeader.js'
 
 export default class LoginPage extends Component {
   constructor(props, context) {
@@ -38,7 +39,9 @@ export default class LoginPage extends Component {
       if (xhr.status === 200) {
         const token = res.currentTarget.response.token;
         Auth.authenticateUser(token)
-        this.context.router.replace('/dashboard');
+        localStorage.setItem('name', res.currentTarget.response.user.name);
+        localStorage.setItem('email', decodeURIComponent(email));
+        this.context.router.replace('/')
         console.log('Valid login form:', {email, password, token});
       } else {
         // failure
@@ -63,12 +66,15 @@ export default class LoginPage extends Component {
 
   render() {
     return (
+      <div>
+      <LoginHeader/>
       <LoginForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
       />
+    </div>
     );
   }
 }

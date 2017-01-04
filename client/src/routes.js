@@ -1,13 +1,13 @@
-import Base from './components/Base.js';
+// import Base from './components/Base.js';
 import HomePage from './components/HomePage.js';
 import SignUpPage from './containers/SignUpPage.js';
 import LoginPage from './containers/LoginPage.js';
 import DashboardPage from './containers/DashboardPage.js';
+import { Router, Route, IndexRoute } from 'react-router';
 import Auth from './modules/Auth';
 
 const routes = {
-  // base component (wrapper for the whole application).
-  component: Base,
+
   childRoutes: [
 
     {
@@ -38,7 +38,7 @@ const routes = {
         // change the current URL to /
         replace('/');
       }
-    }
+    },
   ]
 };
 

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import SignUpForm from '../components/SignUpForm.js';
+import LoginHeader from '../components/LoginHeader.js'
 
 export default class SignUpPage extends Component {
   constructor(props, context) {
@@ -37,13 +38,7 @@ export default class SignUpPage extends Component {
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
       if (xhr.status === 200) {
-        // success
-        // change the component-container state
-        this.setState({
-          errors: {}
-        });
         // set a message
-        console.log(xhr.response);
         localStorage.setItem('successMessage', xhr.response.message);
         // make a redirect
         this.context.router.replace('/login');
@@ -71,12 +66,15 @@ export default class SignUpPage extends Component {
 
   render() {
     return (
+      <div>
+      <LoginHeader/>
       <SignUpForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         errors={this.state.errors}
         user={this.state.user}
       />
+      </div>
     );
   }
 }

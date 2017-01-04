@@ -34228,10 +34228,6 @@
 	  value: true
 	});
 
-	var _Base = __webpack_require__(388);
-
-	var _Base2 = _interopRequireDefault(_Base);
-
 	var _HomePage = __webpack_require__(446);
 
 	var _HomePage2 = _interopRequireDefault(_HomePage);
@@ -34248,15 +34244,17 @@
 
 	var _DashboardPage2 = _interopRequireDefault(_DashboardPage);
 
+	var _reactRouter = __webpack_require__(333);
+
 	var _Auth = __webpack_require__(476);
 
 	var _Auth2 = _interopRequireDefault(_Auth);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import Base from './components/Base.js';
 	var routes = {
-	  // base component (wrapper for the whole application).
-	  component: _Base2.default,
+
 	  childRoutes: [{
 	    path: '/',
 	    component: _HomePage2.default
@@ -34283,86 +34281,7 @@
 	exports.default = routes;
 
 /***/ },
-/* 388 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(333);
-
-	var _AppBar = __webpack_require__(389);
-
-	var _AppBar2 = _interopRequireDefault(_AppBar);
-
-	var _IconButton = __webpack_require__(398);
-
-	var _IconButton2 = _interopRequireDefault(_IconButton);
-
-	var _close = __webpack_require__(442);
-
-	var _close2 = _interopRequireDefault(_close);
-
-	var _FlatButton = __webpack_require__(443);
-
-	var _FlatButton2 = _interopRequireDefault(_FlatButton);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Base = function Base(_ref) {
-	  var children = _ref.children;
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'top-bar' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'top-bar-left' },
-	        _react2.default.createElement(
-	          _reactRouter.IndexLink,
-	          { to: '/' },
-	          'Cuttlesoft - React Challenge'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'top-bar-right' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/login' },
-	          'Login'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'top-bar-right' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/signup' },
-	          'Sign up'
-	        )
-	      )
-	    ),
-	    children
-	  );
-	};
-
-	Base.propTypes = {
-	  children: _react.PropTypes.object.isRequired
-	};
-
-	exports.default = Base;
-
-/***/ },
+/* 388 */,
 /* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40310,6 +40229,8 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -40322,37 +40243,120 @@
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
+	var _TextField = __webpack_require__(463);
+
+	var _TextField2 = _interopRequireDefault(_TextField);
+
+	var _LoginHeader = __webpack_require__(479);
+
+	var _LoginHeader2 = _interopRequireDefault(_LoginHeader);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HomePage = function HomePage() {
-	  return _react2.default.createElement(
-	    _Card.Card,
-	    { className: 'container' },
-	    _react2.default.createElement(_Card.CardTitle, { title: 'Cuttlesoft - React Challenge', subtitle: 'This is the home page.' }),
-	    _react2.default.createElement(
-	      _Card.CardActions,
-	      null,
-	      _react2.default.createElement(
-	        _FlatButton2.default,
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/signup' },
-	          'Sign Up'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        _FlatButton2.default,
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/login' },
-	          'Login'
-	        )
-	      )
-	    )
-	  );
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var HomePage = function (_React$Component) {
+	  _inherits(HomePage, _React$Component);
+
+	  function HomePage(props) {
+	    _classCallCheck(this, HomePage);
+
+	    var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
+
+	    _this.state = {
+	      name: localStorage.getItem('name'),
+	      email: localStorage.getItem('email')
+	    };
+	    return _this;
+	  }
+
+	  _createClass(HomePage, [{
+	    key: 'signOut',
+	    value: function signOut() {
+	      this.setState({ name: '', email: '' });
+	      localStorage.clear();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      if (localStorage.getItem('name') === null) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_LoginHeader2.default, null),
+	          _react2.default.createElement(
+	            _Card.Card,
+	            { className: 'container' },
+	            _react2.default.createElement(_Card.CardTitle, { title: 'Cuttlesoft - React Challenge', subtitle: 'This is the home page.' }),
+	            _react2.default.createElement(
+	              _Card.CardActions,
+	              null,
+	              _react2.default.createElement(
+	                _FlatButton2.default,
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/signup' },
+	                  'Sign Up'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _FlatButton2.default,
+	                null,
+	                _react2.default.createElement(
+	                  _reactRouter.Link,
+	                  { to: '/login' },
+	                  'Login'
+	                )
+	              )
+	            )
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.IndexLink,
+	            {
+	              className: 'logged-in-header',
+	              to: '/' },
+	            'Cuttlesoft - React Challenge'
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'signout', onClick: function onClick() {
+	                return _this2.signOut();
+	              } },
+	            'Sign Out'
+	          ),
+	          _react2.default.createElement(
+	            'section',
+	            { className: 'user-info-container' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'name: ' + this.state.name
+	            ),
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'email: ' + this.state.email
+	            )
+	          )
+	        );
+	      }
+	    }
+	  }]);
+
+	  return HomePage;
+	}(_react2.default.Component);
 
 	exports.default = HomePage;
 
@@ -41881,6 +41885,10 @@
 
 	var _SignUpForm2 = _interopRequireDefault(_SignUpForm);
 
+	var _LoginHeader = __webpack_require__(479);
+
+	var _LoginHeader2 = _interopRequireDefault(_LoginHeader);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41937,13 +41945,7 @@
 	      xhr.responseType = 'json';
 	      xhr.addEventListener('load', function () {
 	        if (xhr.status === 200) {
-	          // success
-	          // change the component-container state
-	          _this2.setState({
-	            errors: {}
-	          });
 	          // set a message
-	          console.log(xhr.response);
 	          localStorage.setItem('successMessage', xhr.response.message);
 	          // make a redirect
 	          _this2.context.router.replace('/login');
@@ -41975,12 +41977,17 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_SignUpForm2.default, {
-	        onSubmit: this.processForm,
-	        onChange: this.changeUser,
-	        errors: this.state.errors,
-	        user: this.state.user
-	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_LoginHeader2.default, null),
+	        _react2.default.createElement(_SignUpForm2.default, {
+	          onSubmit: this.processForm,
+	          onChange: this.changeUser,
+	          errors: this.state.errors,
+	          user: this.state.user
+	        })
+	      );
 	    }
 	  }]);
 
@@ -44139,6 +44146,10 @@
 
 	var _Auth2 = _interopRequireDefault(_Auth);
 
+	var _LoginHeader = __webpack_require__(479);
+
+	var _LoginHeader2 = _interopRequireDefault(_LoginHeader);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44195,7 +44206,9 @@
 	        if (xhr.status === 200) {
 	          var token = res.currentTarget.response.token;
 	          _Auth2.default.authenticateUser(token);
-	          _this2.context.router.replace('/dashboard');
+	          localStorage.setItem('name', res.currentTarget.response.user.name);
+	          localStorage.setItem('email', decodeURIComponent(email));
+	          _this2.context.router.replace('/');
 	          console.log('Valid login form:', { email: email, password: password, token: token });
 	        } else {
 	          // failure
@@ -44224,12 +44237,17 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_LoginForm2.default, {
-	        onSubmit: this.processForm,
-	        onChange: this.changeUser,
-	        errors: this.state.errors,
-	        user: this.state.user
-	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_LoginHeader2.default, null),
+	        _react2.default.createElement(_LoginForm2.default, {
+	          onSubmit: this.processForm,
+	          onChange: this.changeUser,
+	          errors: this.state.errors,
+	          user: this.state.user
+	        })
+	      );
 	    }
 	  }]);
 
@@ -44277,39 +44295,43 @@
 	      user = _ref.user,
 	      errors = _ref.errors;
 	  return _react2.default.createElement(
-	    _Card.Card,
-	    { className: 'container' },
+	    'div',
+	    null,
 	    _react2.default.createElement(
-	      'form',
-	      { action: '/', onSubmit: onSubmit },
-	      errors.summary && _react2.default.createElement(
-	        'p',
-	        { className: 'error-message' },
-	        errors.summary
-	      ),
+	      _Card.Card,
+	      { className: 'container' },
 	      _react2.default.createElement(
-	        'div',
-	        { className: 'Login' },
-	        _react2.default.createElement(_TextField2.default, {
-	          floatingLabelText: 'Email',
-	          name: 'email',
-	          errorText: errors.email,
-	          onChange: onChange,
-	          value: user.email
-	        }),
-	        _react2.default.createElement(_TextField2.default, {
-	          floatingLabelText: 'Password',
-	          type: 'password',
-	          name: 'password',
-	          onChange: onChange,
-	          errorText: errors.password,
-	          value: user.password
-	        })
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'button-line' },
-	        _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Login', primary: true })
+	        'form',
+	        { action: '/', onSubmit: onSubmit },
+	        errors.summary && _react2.default.createElement(
+	          'p',
+	          { className: 'error-message' },
+	          errors.summary
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'Login' },
+	          _react2.default.createElement(_TextField2.default, {
+	            floatingLabelText: 'Email',
+	            name: 'email',
+	            errorText: errors.email,
+	            onChange: onChange,
+	            value: user.email
+	          }),
+	          _react2.default.createElement(_TextField2.default, {
+	            floatingLabelText: 'Password',
+	            type: 'password',
+	            name: 'password',
+	            onChange: onChange,
+	            errorText: errors.password,
+	            value: user.password
+	          })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'button-line' },
+	          _react2.default.createElement(_RaisedButton2.default, { type: 'submit', label: 'Login', primary: true })
+	        )
 	      )
 	    )
 	  );
@@ -44346,7 +44368,6 @@
 	  _createClass(Auth, null, [{
 	    key: 'authenticateUser',
 
-
 	    /**
 	     * Authenticate a user. Save a token string in Local Storage
 	     *
@@ -44355,7 +44376,6 @@
 	    value: function authenticateUser(token) {
 	      localStorage.setItem('token', token);
 	    }
-
 	    /**
 	     * Check if a user is authenticated - check if a token is saved in Local Storage
 	     *
@@ -44378,7 +44398,6 @@
 	    value: function deauthenticateUser() {
 	      localStorage.removeItem('token');
 	    }
-
 	    /**
 	     * Get a token value.
 	     *
@@ -44441,7 +44460,9 @@
 	    var _this = _possibleConstructorReturn(this, (DashboardPage.__proto__ || Object.getPrototypeOf(DashboardPage)).call(this, props));
 
 	    _this.state = {
-	      secretData: 'secret'
+	      secretData: '',
+	      email: '',
+	      name: ''
 	    };
 	    return _this;
 	  }
@@ -44454,17 +44475,21 @@
 	  _createClass(DashboardPage, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this2 = this;
+
 	      var xhr = new XMLHttpRequest();
 	      xhr.open('get', '/api/dashboard');
 	      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	      // set the authorization HTTP header
 	      xhr.setRequestHeader('Authorization', 'bearer ' + _Auth2.default.getToken());
 	      xhr.responseType = 'json';
-	      xhr.addEventListener('load', function () {
+	      xhr.addEventListener('load', function (res) {
 	        if (xhr.status === 200) {
-	          debugger;
+	          _this2.setState({ secretData: xhr.response.message,
+	            email: localStorage.getItem('email'),
+	            name: localStorage.getItem('name')
+	          });
 	        }
-	        console.log('hello');
 	      });
 	      xhr.send(_Auth2.default.getToken());
 	    }
@@ -44472,7 +44497,9 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(_Dashboard2.default, {
-	        secret: this.state.secretData
+	        secret: this.state.secretData,
+	        email: this.state.email,
+	        name: this.state.name
 	      });
 	    }
 	  }]);
@@ -44511,18 +44538,105 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Dashboard = function Dashboard(_ref) {
-	  var secret = _ref.secret;
+	  var secret = _ref.secret,
+	      email = _ref.email,
+	      name = _ref.name;
 	  return _react2.default.createElement(
 	    _Card.Card,
 	    { className: 'container' },
-	    _react2.default.createElement(_TextField2.default, {
-	      name: 'secret',
-	      value: secret
-	    })
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      name
+	    ),
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      email
+	    ),
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      secret
+	    )
 	  );
 	};
 
 	exports.default = Dashboard;
+
+/***/ },
+/* 479 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(333);
+
+	var _AppBar = __webpack_require__(389);
+
+	var _AppBar2 = _interopRequireDefault(_AppBar);
+
+	var _IconButton = __webpack_require__(398);
+
+	var _IconButton2 = _interopRequireDefault(_IconButton);
+
+	var _close = __webpack_require__(442);
+
+	var _close2 = _interopRequireDefault(_close);
+
+	var _FlatButton = __webpack_require__(443);
+
+	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var LoginHeader = function LoginHeader() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'top-bar' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'top-bar-left' },
+	        _react2.default.createElement(
+	          _reactRouter.IndexLink,
+	          { to: '/' },
+	          'Cuttlesoft - React Challenge'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'top-bar-right' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/login' },
+	          'Login'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'top-bar-right' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/signup' },
+	          'Sign up'
+	        )
+	      )
+	    )
+	  );
+	};
+
+	exports.default = LoginHeader;
 
 /***/ }
 /******/ ]);

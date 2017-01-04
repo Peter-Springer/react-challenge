@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 const LoginForm = ({ onSubmit, onChange, user, errors }) => (
+    <div>
     <Card className="container">
       <form action="/" onSubmit={onSubmit}>
       {errors.summary && <p className="error-message">{errors.summary}</p>}
@@ -30,6 +31,7 @@ const LoginForm = ({ onSubmit, onChange, user, errors }) => (
         </div>
       </form>
     </Card>
+    </div>
   );
 
 LoginForm.propTypes = {

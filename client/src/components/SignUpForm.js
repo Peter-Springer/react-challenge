@@ -31,13 +31,13 @@ const SignUpForm = ({ onSubmit, onChange, user, errors, setAdmin }) => (
         />
       </div>
       <div className="field-line">
-        <TextField
-          floatingLabelText="Email"
-          name="email"
-          errorText={errors.email}
-          onChange={onChange}
-          value={user.email}
-        />
+      <TextField
+        floatingLabelText="Email"
+        name="email"
+        errorText={errors.email}
+        onChange={onChange}
+        value={user.email}
+      />
       </div>
       <div className="field-line">
         <TextField

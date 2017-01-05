@@ -10,6 +10,7 @@ export default class SignUpPage extends Component {
       user: {
         name: '',
         password: '',
+        email: '',
         admin: false
       },
       checked: false,

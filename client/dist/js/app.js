@@ -43493,6 +43493,7 @@
 	      user: {
 	        name: '',
 	        password: '',
+	        email: '',
 	        admin: false
 	      },
 	      checked: false
